@@ -7,8 +7,8 @@ apps:
     host: "localhost"
     working-directory: /home/coder
     icon-path: /coder/apps/matlab.svg
-    command: python3
-    args: ["-m", "http.server"]
+    command: matlab-proxy-app
+    # args: ["-m", "http.server"]
     health-check:
       exec:
         command: "pgrep"

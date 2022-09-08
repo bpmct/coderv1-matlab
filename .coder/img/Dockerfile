@@ -78,6 +78,10 @@ ENV MLM_LICENSE_FILE=$LICENSE_SERVER
 # https://github.com/mathworks-ref-arch/matlab-dockerfile#help-make-matlab-even-better
 ENV MW_DDUX_FORCE_ENABLE=true MW_CONTEXT_TAGS=MATLAB:DOCKERFILE:V1
 
+RUN python3 -m pip install matlab-proxy
+
+COPY ./coder /
+
 # Set user and work directory
 USER coder
 WORKDIR /home/matlab
