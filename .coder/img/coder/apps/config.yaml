@@ -1,20 +1,28 @@
 # Include custom applications in your Coder workspace
 # see https://coder.com/docs/coder/latest/workspaces/applications
 apps:
-  - name: Matlab
+  - name: MATLAB
     scheme: http
-    port: 8000
     host: "localhost"
+    port: 7035
+    # Working directory
     working-directory: /home/coder
+    # File path to icon used in application launcher
     icon-path: /coder/apps/matlab.svg
-    command: matlab-proxy-app
-    # args: ["-m", "http.server"]
+    # Use the devurl_redirect script to run JupyterLab and access via a subdomain
+    command: /usr/bin/python3
+    # Array of arguments for command
+    args:
+      [
+        "/coder/apps/devurl_redirect.py",
+        "--listen-port=7035",
+        "--start-command",
+        "matlab-proxy-app",
+        "--redirect-port=8880",
+      ]
     health-check:
-      exec:
-        command: "pgrep"
-        args: ["python3"]
+      # check redirect server
       http:
         scheme: "http"
-        host: "localhost"
-        port: 8000
-        path: ""
+        port: 8880
+        path: "/index.html"

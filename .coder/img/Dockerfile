@@ -80,8 +80,11 @@ ENV MW_DDUX_FORCE_ENABLE=true MW_CONTEXT_TAGS=MATLAB:DOCKERFILE:V1
 
 RUN python3 -m pip install matlab-proxy
 
-COPY ./coder /
+# Copy app configuration
+COPY ["./coder", "/coder"]
 
 # Set user and work directory
 USER coder
-WORKDIR /home/matlab
+
+# Needed to start Matlab on a deterministic port
+ENV MWI_APP_PORT=8880
