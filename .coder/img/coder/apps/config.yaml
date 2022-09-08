@@ -1,3 +1,20 @@
 # Include custom applications in your Coder workspace
 # see https://coder.com/docs/coder/latest/workspaces/applications
 apps:
+  - name: Matlab
+    scheme: http
+    port: 8000
+    host: "localhost"
+    working-directory: /home/coder
+    icon-path: /coder/apps/matlab.svg
+    command: python3
+    args: ["-m", "http.server"]
+    health-check:
+      exec:
+        command: "pgrep"
+        args: ["python3"]
+      http:
+        scheme: "http"
+        host: "localhost"
+        port: 8000
+        path: ""
