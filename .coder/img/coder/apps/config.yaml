@@ -17,12 +17,12 @@ apps:
         "/coder/apps/devurl_redirect.py",
         "--listen-port=7035",
         "--start-command",
-        "matlab-proxy-app",
-        "--redirect-port=8880",
+        "/coder/apps/matlab.sh",
+        "--redirect-port=8881",
       ]
     health-check:
       # check redirect server
       http:
         scheme: "http"
-        port: 8880
+        port: 8881
         path: "/index.html"

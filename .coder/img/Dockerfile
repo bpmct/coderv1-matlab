@@ -85,6 +85,3 @@ COPY ["./coder", "/coder"]
 
 # Set user and work directory
 USER coder
-
-# Needed to start Matlab on a deterministic port
-ENV MWI_APP_PORT=8880
